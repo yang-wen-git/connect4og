@@ -60,13 +60,12 @@ void clear_board(char spaces[6][8], int rows, int columns);
 
 int main() {
     bool running = true;
-    char spaces[6][8] = {{' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-                         {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-                         {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-                         {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-                         {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-                         {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
-                        };
+    char spaces[6][8];
+    for (int i = 0; i < 6; i++){
+        for(int j = 0; j < 8; j++){
+            spaces[i][j] = ' ';
+        }
+    }
     char player1 = 'X';
     char player2 = 'O';
 
@@ -88,10 +87,10 @@ int main() {
                 std::cin.clear();
                 std::cin.ignore(40, '\n');
             } while (play_again != 'n' && play_again != 'y');
-            if (play_again == 'n' || play_again == 'N') {
+            if (play_again == 'n') {
                 std::cout<<"Thanks for playing!" << std::endl;
                 running = false;
-            } else if (play_again == 'y' || play_again == 'Y'){
+            } else if (play_again == 'y'){
                 clear_board(spaces, 6, 8);
                 draw_board(spaces, 6, 8);
                 player1_move(spaces, 6, 8, player1);  
@@ -113,10 +112,10 @@ int main() {
                     std::cin.clear();
                     std::cin.ignore(40, '\n');
                 } while (play_again != 'n' && play_again != 'y');
-                if (play_again == 'n' || play_again == 'N') {
+                if (play_again == 'n') {
                     std::cout<<"Thanks for playing!" << std::endl;
                     running = false;
-                } else if (play_again == 'y' || play_again == 'Y') {
+                } else if (play_again == 'y') {
                     clear_board(spaces, 6, 8);
                     draw_board(spaces, 6, 8);
                 }
@@ -136,54 +135,58 @@ int main() {
 // post: connect 4 board, with values of spaces in between the borders are
 //       displayed.
 void draw_board(char spaces[6][8], int rows, int columns){
-    std::cout << "        0     1     2     3     4     5     6     7         " 
+    std::cout << "  0   1   2   3   4   5   6   7  " 
     ""
-                 "" << '\n';
-    std::cout << "      _______________________________________________     " 
-    <<
-        '\n';
+                 "" << std::endl;
+    
+    for (int i = 0; i < rows; i++){
+        for (int j = 0; j < columns; j++){
+            //if (j == columns-1) {
+              //  std::cout << "| " << spaces[i][j] << " |";
+            //}
+            std::cout << "| " << spaces[i][j] << ' ';
+        }
+        std::cout << "|  " << std::endl;
+    }    
 
-    std::cout << "     |  "<<spaces[0][0]<<"  |  "<<spaces[0][1]<<"  |  "
-                         ""<<spaces[0][2]<<"  |  "<<spaces[0][3]<<"  |   "
-                          ""<<spaces[0][4]<<" |  "<<spaces[0][5]<<"  |   "
-                          ""<<spaces[0][6]<<" |  "<<spaces[0][7]<<"  |     "
-                        "" << '\n';
+    // std::cout << "     |  "<<spaces[0][0]<<"  |  "<<spaces[0][1]<<"  |  "
+    //                      ""<<spaces[0][2]<<"  |  "<<spaces[0][3]<<"  |   "
+    //                       ""<<spaces[0][4]<<" |  "<<spaces[0][5]<<"  |   "
+    //                       ""<<spaces[0][6]<<" |  "<<spaces[0][7]<<"  |     "
+    //                     "" << '\n';
 
-    std::cout << "     |  "<<spaces[1][0]<<"  |  "<<spaces[1][1]<<"  |  "
-                         ""<<spaces[1][2]<<"  |  "<<spaces[1][3]<<"  |   "
-                          ""<<spaces[1][4]<<" |  "<<spaces[1][5]<<"  |   "
-                          ""<<spaces[1][6]<<" |  "<<spaces[1][7]<<"  |     "
-                        "" << '\n';
+    // std::cout << "     |  "<<spaces[1][0]<<"  |  "<<spaces[1][1]<<"  |  "
+    //                      ""<<spaces[1][2]<<"  |  "<<spaces[1][3]<<"  |   "
+    //                       ""<<spaces[1][4]<<" |  "<<spaces[1][5]<<"  |   "
+    //                       ""<<spaces[1][6]<<" |  "<<spaces[1][7]<<"  |     "
+    //                     "" << '\n';
 
-    std::cout << "     |  "<<spaces[2][0]<<"  |  "<<spaces[2][1]<<"  |  "
-                         ""<<spaces[2][2]<<"  |  "<<spaces[2][3]<<"  |   "
-                          ""<<spaces[2][4]<<" |  "<<spaces[2][5]<<"  |   "
-                          ""<<spaces[2][6]<<" |  "<<spaces[2][7]<<"  |    "
-                        "" << '\n';
+    // std::cout << "     |  "<<spaces[2][0]<<"  |  "<<spaces[2][1]<<"  |  "
+    //                      ""<<spaces[2][2]<<"  |  "<<spaces[2][3]<<"  |   "
+    //                       ""<<spaces[2][4]<<" |  "<<spaces[2][5]<<"  |   "
+    //                       ""<<spaces[2][6]<<" |  "<<spaces[2][7]<<"  |    "
+    //                     "" << '\n';
 
-    std::cout << "     |  "<<spaces[3][0]<<"  |  "<<spaces[3][1]<<"  |  "
-                         ""<<spaces[3][2]<<"  |  "<<spaces[3][3]<<"  |   "
-                          ""<<spaces[3][4]<<" |  "<<spaces[3][5]<<"  "
-                      "|   "<<spaces[3][6]<<" |  "<<spaces[3][7]<<"  |     "
-                        "" << '\n';
+    // std::cout << "     |  "<<spaces[3][0]<<"  |  "<<spaces[3][1]<<"  |  "
+    //                      ""<<spaces[3][2]<<"  |  "<<spaces[3][3]<<"  |   "
+    //                       ""<<spaces[3][4]<<" |  "<<spaces[3][5]<<"  "
+    //                   "|   "<<spaces[3][6]<<" |  "<<spaces[3][7]<<"  |     "
+    //                     "" << '\n';
 
-    std::cout << "     |  "<<spaces[4][0]<<"  |  "<<spaces[4][1]<<"  |  "
-                         ""<<spaces[4][2]<<"  |  "<<spaces[4][3]<<"  |   "
-                          ""<<spaces[4][4]<<" |  "<<spaces[4][5]<<"  |   "
-                          ""<<spaces[4][6]<<" |  "<<spaces[4][7]<<"  |     "
-                       "" << '\n';
+    // std::cout << "     |  "<<spaces[4][0]<<"  |  "<<spaces[4][1]<<"  |  "
+    //                      ""<<spaces[4][2]<<"  |  "<<spaces[4][3]<<"  |   "
+    //                       ""<<spaces[4][4]<<" |  "<<spaces[4][5]<<"  |   "
+    //                       ""<<spaces[4][6]<<" |  "<<spaces[4][7]<<"  |     "
+    //                    "" << '\n';
 
-    std::cout << "     |  "<<spaces[5][0]<<"  |  "<<spaces[5][1]<<"  |  "
-                         ""<<spaces[5][2]<<"  |  "<<spaces[5][3]<<"  |   "
-                          ""<<spaces[5][4]<<" |  "<<spaces[5][5]<<"  |   "
-                          "" <<spaces[5][6]<<" |  "<<spaces[5][7]<<"  |     "
-                        "" << '\n';
+    // std::cout << "     |  "<<spaces[5][0]<<"  |  "<<spaces[5][1]<<"  |  "
+    //                      ""<<spaces[5][2]<<"  |  "<<spaces[5][3]<<"  |   "
+    //                       ""<<spaces[5][4]<<" |  "<<spaces[5][5]<<"  |   "
+    //                       "" <<spaces[5][6]<<" |  "<<spaces[5][7]<<"  |     "
+    //                     "" << '\n';
 
-    std::cout << "      _______________________________________________     " 
-    <<
-        '\n';
 
-    std::cout << '\n';
+    std::cout << std::endl;
 
 
 }
