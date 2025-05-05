@@ -148,44 +148,6 @@ void draw_board(char spaces[6][8], int rows, int columns){
         }
         std::cout << "|  " << std::endl;
     }    
-
-    // std::cout << "     |  "<<spaces[0][0]<<"  |  "<<spaces[0][1]<<"  |  "
-    //                      ""<<spaces[0][2]<<"  |  "<<spaces[0][3]<<"  |   "
-    //                       ""<<spaces[0][4]<<" |  "<<spaces[0][5]<<"  |   "
-    //                       ""<<spaces[0][6]<<" |  "<<spaces[0][7]<<"  |     "
-    //                     "" << '\n';
-
-    // std::cout << "     |  "<<spaces[1][0]<<"  |  "<<spaces[1][1]<<"  |  "
-    //                      ""<<spaces[1][2]<<"  |  "<<spaces[1][3]<<"  |   "
-    //                       ""<<spaces[1][4]<<" |  "<<spaces[1][5]<<"  |   "
-    //                       ""<<spaces[1][6]<<" |  "<<spaces[1][7]<<"  |     "
-    //                     "" << '\n';
-
-    // std::cout << "     |  "<<spaces[2][0]<<"  |  "<<spaces[2][1]<<"  |  "
-    //                      ""<<spaces[2][2]<<"  |  "<<spaces[2][3]<<"  |   "
-    //                       ""<<spaces[2][4]<<" |  "<<spaces[2][5]<<"  |   "
-    //                       ""<<spaces[2][6]<<" |  "<<spaces[2][7]<<"  |    "
-    //                     "" << '\n';
-
-    // std::cout << "     |  "<<spaces[3][0]<<"  |  "<<spaces[3][1]<<"  |  "
-    //                      ""<<spaces[3][2]<<"  |  "<<spaces[3][3]<<"  |   "
-    //                       ""<<spaces[3][4]<<" |  "<<spaces[3][5]<<"  "
-    //                   "|   "<<spaces[3][6]<<" |  "<<spaces[3][7]<<"  |     "
-    //                     "" << '\n';
-
-    // std::cout << "     |  "<<spaces[4][0]<<"  |  "<<spaces[4][1]<<"  |  "
-    //                      ""<<spaces[4][2]<<"  |  "<<spaces[4][3]<<"  |   "
-    //                       ""<<spaces[4][4]<<" |  "<<spaces[4][5]<<"  |   "
-    //                       ""<<spaces[4][6]<<" |  "<<spaces[4][7]<<"  |     "
-    //                    "" << '\n';
-
-    // std::cout << "     |  "<<spaces[5][0]<<"  |  "<<spaces[5][1]<<"  |  "
-    //                      ""<<spaces[5][2]<<"  |  "<<spaces[5][3]<<"  |   "
-    //                       ""<<spaces[5][4]<<" |  "<<spaces[5][5]<<"  |   "
-    //                       "" <<spaces[5][6]<<" |  "<<spaces[5][7]<<"  |     "
-    //                     "" << '\n';
-
-
     std::cout << std::endl;
 
 
