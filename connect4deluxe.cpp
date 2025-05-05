@@ -74,27 +74,30 @@ int main() {
 
     do {
         char play_again;
-        // to be initialized later when player is asked if they would like to replay
+        // to be initialized later when player is asked if they would 
+        //like to replay
         player1_move(spaces, 6, 8, player1);
         draw_board(spaces, 6, 8);
         if (check_winner_vertical(spaces, 6, 8, player1, player2) ||
             check_winner_horizontal(spaces, 6, 8, player1, player2) ||
-            check_tie(spaces, 6, 8)){  // all three conditions end current round
-            std::cout << "Would you like to play again? (y/n)" << ' ';
-            std::cin >> play_again;
+            check_tie(spaces, 6, 8)){  // all three 
+                //conditions end current round
+            do {
+                std::cout << "Would you like to play again? (y/n)" << ' ';
+                std::cin >> play_again;
+                std::cin.clear();
+                std::cin.ignore(40, '\n');
+            } while (play_again != 'n' && play_again != 'y');
             if (play_again == 'n' || play_again == 'N') {
-                std::cout<<"Thanks for playing!";
+                std::cout<<"Thanks for playing!" << std::endl;
                 running = false;
             } else if (play_again == 'y' || play_again == 'Y'){
                 clear_board(spaces, 6, 8);
                 draw_board(spaces, 6, 8);
-                player1_move(spaces, 6, 8, player1);  // ensures Player X starts first in rematch
+                player1_move(spaces, 6, 8, player1);  
+                // ensures Player X starts first in rematch
                 draw_board(spaces, 6, 8);
-            } else {
-                // if input other than y, Y, n or N is read, program ends
-                std::cout << "Read failed. Please run program again.";
-                running = false;
-            }
+            } 
         }
 
         if (running != false) {
@@ -103,20 +106,20 @@ int main() {
             if (check_winner_vertical(spaces, 6, 8, player1, player2) ||
                 check_winner_horizontal(spaces, 6, 8, player1, player2) ||
                 check_tie(spaces, 6, 8)){
-                std::cout << "Would you like to play again? (y/n)" << ' ';
-                std::cin >> play_again;
+                // std::cout << "Would you like to play again? (y/n)" << ' ';
+                do {
+                    std::cout << "Would you like to play again? (y/n)" << ' ';
+                    std::cin >> play_again;
+                    std::cin.clear();
+                    std::cin.ignore(40, '\n');
+                } while (play_again != 'n' && play_again != 'y');
                 if (play_again == 'n' || play_again == 'N') {
-                    std::cout<<"Thanks for playing!";
+                    std::cout<<"Thanks for playing!" << std::endl;
                     running = false;
                 } else if (play_again == 'y' || play_again == 'Y') {
                     clear_board(spaces, 6, 8);
                     draw_board(spaces, 6, 8);
-                } else {
-                    // if input other than y, Y, n or N is read, program ends
-                    std::cout << "Read failed. Please run program again.";
-                    running = false;
                 }
-
             }
 
         }
@@ -125,16 +128,19 @@ int main() {
     return 0;
 }
 
-// desc: draws board of 48 spaces, with each value of spaces between the borders
-//       marked by '|', as well as borders on the top and bottom of the board.
-//       column numbers added above the top border to improve user-friendliness
+// desc: draws board of 48 spaces, with each value of spaces between the 
+//       borders marked by '|', as well as borders on the top and 
+//       bottom of the board. column numbers added above the top border 
+//       to improve user-friendliness
 // pre: array passed must be 6 by 8; 6 inner arrays of 8 char values.
 // post: connect 4 board, with values of spaces in between the borders are
 //       displayed.
 void draw_board(char spaces[6][8], int rows, int columns){
-    std::cout << "        1     2     3     4     5     6     7     8          "
+    std::cout << "        0     1     2     3     4     5     6     7         " 
+    ""
                  "" << '\n';
-    std::cout << "      _______________________________________________     " <<
+    std::cout << "      _______________________________________________     " 
+    <<
         '\n';
 
     std::cout << "     |  "<<spaces[0][0]<<"  |  "<<spaces[0][1]<<"  |  "
@@ -173,7 +179,8 @@ void draw_board(char spaces[6][8], int rows, int columns){
                           "" <<spaces[5][6]<<" |  "<<spaces[5][7]<<"  |     "
                         "" << '\n';
 
-    std::cout << "      _______________________________________________     " <<
+    std::cout << "      _______________________________________________     " 
+    <<
         '\n';
 
     std::cout << '\n';
@@ -206,8 +213,9 @@ void player1_move(char spaces[6][8], int rows, int columns, char player1) {
         {
             row_number--;
         }
-        spaces[row_number][column_number] = player1;
     } while (column_number < 0 || column_number > 7);
+
+    spaces[row_number][column_number] = player1;
 }
 
 // desc: places player O's marker on the lowest empty row
@@ -227,7 +235,6 @@ void player2_move(char spaces[6][8], int rows, int columns, char player2) {
             std::cin.clear();
             std::cin.ignore(40, '\n');
         }
-        column_number--;
         while (spaces[row_number][column_number] == ' ' && row_number < 5)
         {
             row_number++;
@@ -236,8 +243,8 @@ void player2_move(char spaces[6][8], int rows, int columns, char player2) {
         {
             row_number--;
         }
-        spaces[row_number][column_number] = player2;
     } while (column_number < 0 || column_number > 7);
+    spaces[row_number][column_number] = player2;
 }
 
 // desc: checks if there is a winner; if there are 4 of the same
@@ -246,13 +253,15 @@ void player2_move(char spaces[6][8], int rows, int columns, char player2) {
 // post: function does not modify array, only analyzes current state
 //       of game and returns true if there are 4 consecutive markers in
 //       a particular row.
-bool check_winner_horizontal(char spaces[6][8], int rows, int columns, char player1, char player2){
+bool check_winner_horizontal(char spaces[6][8], int rows, int columns
+    , char player1, char player2){
     for(int i = 0; i < rows; i++){
         for(int j = 0; j <= columns/2; j++) {
             if (spaces[i][j] != ' ' && spaces[i][j] == spaces[i][j+1] &&
                 spaces[i][j+1] == spaces[i][j+2]
                 && spaces[i][j+2] == spaces[i][j+3]) {
-                spaces[i][j] == player1? std::cout << "Player X Wins!" << std::endl : std::cout << "Player O Wins!" << std::endl;
+                spaces[i][j] == player1? std::cout << "Player X Wins!" 
+                << std::endl : std::cout << "Player O Wins!" << std::endl;
                 return true;
             }
         }
@@ -266,13 +275,16 @@ bool check_winner_horizontal(char spaces[6][8], int rows, int columns, char play
 // post: function does not modify array, only analyzes current state
 //       of game and returns true if there are 4 consecutive markers in
 //       a particular column.
-bool check_winner_vertical(char spaces[6][8], int rows, int columns, char player1, char player2) {
+bool check_winner_vertical(char spaces[6][8], int rows, int columns, 
+    char player1, char player2) {
     for(int i = 0; i < rows/2; i++){
         for(int j = 0; j < columns; j++) {
             if (spaces[i][j] != ' ' && spaces[i][j] == spaces[i+1][j] &&
                 spaces[i+1][j] == spaces[i+2][j] &&
                 spaces[i+2][j] == spaces[i+3][j]) {
-                spaces[i][j] == player1? std::cout << "Player X Wins!" << std::endl : std::cout << "Player O Wins!" << std::endl;
+                spaces[i][j] == player1? std::cout << "Player X Wins!" 
+                << std::endl : std::cout << "Player O Wins!" << std::endl;
+
                 return true;
             }
         }
