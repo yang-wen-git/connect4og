@@ -179,8 +179,9 @@ void player1_move(char spaces[6][8], int rows, int columns, char player1) {
             row_number--;
         }
     } while (column_number < 0 || column_number > 7);
-
-    spaces[row_number][column_number] = player1;
+    if (spaces[row_number][column_number] == ' ') {
+        spaces[row_number][column_number] = player1;
+    }
 }
 
 // desc: places player O's marker on the lowest empty row
@@ -209,7 +210,9 @@ void player2_move(char spaces[6][8], int rows, int columns, char player2) {
             row_number--;
         }
     } while (column_number < 0 || column_number > 7);
-    spaces[row_number][column_number] = player2;
+    if (spaces[row_number][column_number] == ' ') {    
+        spaces[row_number][column_number] = player2;
+    }
 }
 
 // desc: checks if there is a winner; if there are 4 of the same
