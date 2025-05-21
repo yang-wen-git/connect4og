@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 struct Node {
     std::string name;
@@ -8,6 +9,8 @@ struct Node {
 
 Node* copy_vent(Node* &head);
 void final_vent(Node* &head);
+void check(Node* head, std::string target);
+void uncheck(Node* head, std::string target);
 int main() {
     Node* head = new Node;
     std::string names[5] = {"Akiko", "Asa", "Minami", "Naho", "Yukiko"};
@@ -65,6 +68,13 @@ int main() {
         copy_iter = copy_iter -> next;
     }
     std::cout << std::endl;
+
+    check(head, "Minami");
+    iter = head;
+    while (iter!=nullptr) {
+        std::cout << iter -> name << ' ' << iter -> age << ", ";
+        iter = iter -> next;
+    }
     final_vent(head);
     final_vent(head2);
     return 0;
@@ -94,5 +104,24 @@ void final_vent(Node* &head) {
         head = iter -> next;
         delete iter;
         iter = head;
+    }
+}
+
+void check(Node* head, std::string target) {
+    Node* iter = head;
+    while (iter -> next != nullptr && iter -> name != target) {
+        if (iter ->next ->name == target) {
+            iter -> next -> name += " ✓";
+        }
+        iter = iter -> next;
+    }
+}
+
+void uncheck(Node* head, std::string target) {
+    Node* iter = head;
+    while (iter -> next != nullptr && iter -> name != (target + " ✓")) {
+        if (iter -> next -> name == (target + " ✓")) {
+            iter -> next -> name.erase(10, 8);
+        }
     }
 }
